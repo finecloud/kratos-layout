@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package pay.v1;
+import "google/api/annotations.proto";
+
+option go_package = "github.com/finecloud/micro-order/api/pay/v1;v1";
+option java_multiple_files = true;
+option java_package = "micro-pay.v1.errors";
+option objc_class_prefix = "APIPayErrors";
+
+
+message PayCreateRequest {
+
+}
+
+message PayCreateReply {
+
+}
+
+service Pay {
+  // Sends a greeting
+  rpc  createPay(PayCreateRequest) returns (PayCreateReply)  {
+    option (google.api.http) = {
+      get: "/create/pay"
+    };
+  }
+}

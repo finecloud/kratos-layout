@@ -1,0 +1,15 @@
+service:
+  name: kratos-layout
+  version: 1.0.0
+
+data:
+  nacos:
+    addr: erp.infwaves.com
+    port: 8848
+    namespace_id: fff9c5fa-2602-4778-ad80-0894df6f2061
+    log_rotate_time: 1h
+    log_max_age: 3
+    log_level: debug
+    cluster_name: DEFAULT
+    group_name: DEFAULT_GROUP
+    weight: 10

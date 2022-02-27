@@ -1,0 +1,95 @@
+syntax = "proto3";
+package kratos.api;
+
+option go_package = "github.com/LikeRainDay/kratos-layout/internal/conf;conf";
+
+import "google/protobuf/duration.proto";
+
+message Bootstrap {
+  Server server = 1;
+  Data data = 2;
+}
+
+message Server {
+  message HTTP {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  message GRPC {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  message AuthCheck {
+    string check_url = 1;
+    string username = 2;
+    string password = 3;
+  }
+  message IgnorePath {
+    repeated string router = 1;
+  }
+  HTTP http = 1;
+  GRPC grpc = 2;
+  AuthCheck auth_check = 3;
+  IgnorePath ignore_path = 4;
+}
+
+message Data {
+  message Casdoor {
+    string endpoint = 1;
+    string client_id = 2;
+    string client_secret = 3;
+    string jwt_secret = 4;
+    string organization_name = 5;
+    string application_name = 6;
+    repeated string ignore_urls = 7;
+  }
+
+  message Mysql {
+    string source = 1;
+    int32 max_idl = 2;
+    int32 max_open = 3;
+    google.protobuf.Duration conn_max_lift = 4;
+  }
+  message Redis {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration read_timeout = 3;
+    google.protobuf.Duration write_timeout = 4;
+  }
+  message GRPC {
+    google.protobuf.Duration timeout = 1;
+  }
+  message Nacos {
+    string addr = 1;
+    uint64 port = 2;
+    string namespace_id = 3;
+    string log_rotate_time = 4;
+    int64 log_max_age = 5;
+    string log_level = 6;
+    string cluster_name = 7;
+    string group_name = 8;
+    double weight = 9;
+    string data_id = 10;
+  }
+  message Sentinel {
+    bool enabled = 1;
+    string group_name = 2;
+    string data_id_flow = 3;
+    string data_id_cb = 4;
+  }
+
+  message SkyWalking {
+    string addr = 1;
+    bool enabled = 2;
+  }
+
+  Mysql mysql = 1;
+  Redis redis = 2;
+  Nacos nacos = 3;
+  GRPC grpc = 4;
+  Sentinel sentinel = 5;
+  SkyWalking skyWalking = 6;
+  Casdoor casdoor = 7;
+}

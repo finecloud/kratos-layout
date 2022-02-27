@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run_service" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="kratos-layout" />
+    <working_directory value="$PROJECT_DIR$" />
+    <go_parameters value="-ldflags &quot;-X main.Version=SERVICE_VERSION &quot;" />
+    <parameters value="-conf=configs" />
+    <envs>
+      <env name="service.name" value="test" />
+    </envs>
+    <kind value="DIRECTORY" />
+    <package value="github.com/LikeRainDay/kratos-layout/cmd/server" />
+    <directory value="$PROJECT_DIR$/cmd/server" />
+    <filePath value="$PROJECT_DIR$/cmd/server/main.go" />
+    <method v="2" />
+  </configuration>
+</component>
