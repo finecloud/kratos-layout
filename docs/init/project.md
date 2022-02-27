@@ -49,5 +49,5 @@ IDE 加载 `.run/run_service.run.xml`文件 如图所示
 git submodule deinit submodulename
 git rm submodulename
 git rm --cached submodulename
-rm -rf ./git/modules/submodulename
+rm -rf .git/modules/submodulename
 ```
