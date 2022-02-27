@@ -7,6 +7,7 @@ import (
 	"github.com/LikeRainDay/kratos-layout/internal/service"
 	"github.com/LikeRainDay/kratos-layout/pkg/casdoor_auth"
 	"github.com/LikeRainDay/kratos-layout/pkg/log_id"
+	"github.com/LikeRainDay/kratos-layout/pkg/uow"
 	prom "github.com/go-kratos/kratos/contrib/metrics/prometheus/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/logging"
@@ -16,11 +17,18 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware/validate"
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/go-kratos/swagger-api/openapiv2"
+	uow2 "github.com/goxiaoy/uow"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 // NewHTTPServer new HTTP server.
-func NewHTTPServer(c *conf.Server, auth *conf.Data, logger log.Logger, greeter *service.GreeterService) *http.Server {
+func NewHTTPServer(
+	c *conf.Server,
+	auth *conf.Data,
+	logger log.Logger,
+	uowMgr uow2.Manager,
+	greeter *service.GreeterService,
+) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			validate.Validator(),
@@ -30,6 +38,7 @@ func NewHTTPServer(c *conf.Server, auth *conf.Data, logger log.Logger, greeter *
 				casdoor_auth.NewWhiteListMatcher(auth.Casdoor.IgnoreUrls),
 			).Build(),
 			logging.Server(logger),
+			uow.Uow(logger, uowMgr),
 			metrics.Server(
 				metrics.WithSeconds(prom.NewHistogram(data.MetricReqDurationHistogram)),
 				metrics.WithRequests(prom.NewCounter(data.MetricReqTotalCounter))),

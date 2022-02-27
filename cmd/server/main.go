@@ -4,11 +4,14 @@ import (
 	"flag"
 	"fmt"
 	"github.com/LikeRainDay/kratos-layout/internal/conf"
+	"github.com/LikeRainDay/kratos-layout/internal/data"
 	"github.com/LikeRainDay/kratos-layout/pkg/casdoor_auth"
 	"github.com/LikeRainDay/kratos-layout/pkg/color"
+	"github.com/LikeRainDay/kratos-layout/pkg/uow"
 	"github.com/go-kratos/kratos/v2/middleware/tracing"
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/http"
+	shttp "github.com/goxiaoy/go-saas/common/http"
 	"gopkg.in/yaml.v3"
 	"os"
 
@@ -103,7 +106,13 @@ func main() {
 		casdoor.ApplicationName,
 	)
 
-	app, cleanup, err := initApp(bc.Server, bc.Data, logger)
+	app, cleanup, err := initApp(
+		bc.Server,
+		bc.Data,
+		logger,
+		uow.NewGormConfig(bc.Data, data.ConnName),
+		shttp.NewDefaultWebMultiTenancyOption(),
+	)
 	if err != nil {
 		panic(err)
 	}

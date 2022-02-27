@@ -4,6 +4,7 @@ package kratos.api;
 option go_package = "github.com/LikeRainDay/kratos-layout/internal/conf;conf";
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
 
 message Bootstrap {
   Server server = 1;
@@ -45,18 +46,35 @@ message Data {
     string application_name = 6;
     repeated string ignore_urls = 7;
   }
-
-  message Mysql {
-    string source = 1;
-    int32 max_idl = 2;
-    int32 max_open = 3;
-    google.protobuf.Duration conn_max_lift = 4;
+  message Endpoints{
+    map<string, Database> databases = 1;
+    map<string, Event> events = 2;
+    map<string, Redis> redis = 3;
+  }
+  message Event{
+    string type=1;
+    string addr=2;
+    string topic=3;
+    string group=4;
+  }
+  message Database {
+    string driver = 1;
+    string source = 2;
+    bool  debug = 3;
+    google.protobuf.StringValue table_prefix = 4;
   }
   message Redis {
     string network = 1;
     string addr = 2;
     google.protobuf.Duration read_timeout = 3;
     google.protobuf.Duration write_timeout = 4;
+    string username = 5;
+    string password = 6;
+    int32  db = 7;
+    int32 max_retries = 8;
+    google.protobuf.Duration min_retry_backoff = 9;
+    google.protobuf.Duration max_retry_backoff = 10;
+    google.protobuf.Duration dial_timeout = 11;
   }
   message GRPC {
     google.protobuf.Duration timeout = 1;
@@ -79,17 +97,14 @@ message Data {
     string data_id_flow = 3;
     string data_id_cb = 4;
   }
-
   message SkyWalking {
     string addr = 1;
     bool enabled = 2;
   }
-
-  Mysql mysql = 1;
-  Redis redis = 2;
-  Nacos nacos = 3;
-  GRPC grpc = 4;
-  Sentinel sentinel = 5;
-  SkyWalking skyWalking = 6;
-  Casdoor casdoor = 7;
+  Endpoints endpoints = 1;
+  Nacos nacos = 2;
+  GRPC grpc = 3;
+  Sentinel sentinel = 4;
+  SkyWalking skyWalking = 5;
+  Casdoor casdoor = 6;
 }

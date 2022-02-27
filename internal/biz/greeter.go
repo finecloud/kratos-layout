@@ -3,10 +3,18 @@ package biz
 import (
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"time"
 )
 
 type Greeter struct {
-	Hello string
+	ID        int64     `gorm:"primarykey; autoIncrement"`
+	Site      string    `gorm:"type:varchar(32)"`
+	EventType string    `gorm:"type:varchar(64)"`
+	Hello     string    `gorm:"hello:varchar(32)"`
+	Body      string    `gorm:"type:text"`
+	FbBody    string    `gorm:"type:text"`
+	Reply     string    `gorm:"type:text"`
+	Time      time.Time `gorm:"type:datetime"`
 }
 
 type GreeterRepo interface {

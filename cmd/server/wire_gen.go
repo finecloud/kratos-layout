@@ -13,13 +13,15 @@ import (
 	"github.com/LikeRainDay/kratos-layout/internal/service"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/goxiaoy/go-saas/common/http"
+	"github.com/goxiaoy/go-saas/gorm"
 )
 
 // Injectors from wire.go:
 
 // initApp init kratos application.
-func initApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
-	dataData, cleanup, err := data.NewData(confData, logger)
+func initApp(confServer *conf.Server, confData *conf.Data, logger log.Logger, gormConfig *gorm.Config, webMultiTenancyOption *http.WebMultiTenancyOption) (*kratos.App, func(), error) {
+	dataData, cleanup, err := data.NewData(nil, logger)
 	if err != nil {
 		return nil, nil, err
 	}
