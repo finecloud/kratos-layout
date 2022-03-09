@@ -1,4 +1,4 @@
-module github.com/LikeRainDay/kratos-layout
+module github.com/finecloud/kratos-layout
 
 go 1.16
 
@@ -8,9 +8,9 @@ require (
 	github.com/alibaba/sentinel-golang/pkg/datasource/nacos v0.0.0-20210922020954-ace810bc3806
 	github.com/casdoor/casdoor-go-sdk v0.2.0
 	github.com/emicklei/proto v1.9.2 // indirect
-	github.com/go-kratos/kratos/cmd/kratos/v2 v2.0.0-20220227042951-48d407cc9bd9 // indirect
-	github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2 v2.0.0-20220227042951-48d407cc9bd9 // indirect
-	github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2 v2.0.0-20220227042951-48d407cc9bd9 // indirect
+	github.com/go-kratos/kratos/cmd/kratos/v2 v2.0.0-20220309025117-4387085047b9 // indirect
+	github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2 v2.0.0-20220309025117-4387085047b9 // indirect
+	github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2 v2.0.0-20220309025117-4387085047b9 // indirect
 	github.com/go-kratos/kratos/contrib/metrics/prometheus/v2 v2.0.0-20220227042951-48d407cc9bd9
 	github.com/go-kratos/kratos/v2 v2.2.0
 	github.com/go-kratos/nacos v0.1.1
@@ -23,8 +23,8 @@ require (
 	github.com/spf13/viper v1.10.0
 	golang.org/x/mod v0.5.1 // indirect
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
-	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
-	google.golang.org/genproto v0.0.0-20220222213610-43724f9ea8cf
+	golang.org/x/sys v0.0.0-20220307203707-22a9840ba4d7 // indirect
+	google.golang.org/genproto v0.0.0-20220308174144-ae0e22291548
 	google.golang.org/grpc v1.44.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.2.0 // indirect
 	google.golang.org/protobuf v1.27.1

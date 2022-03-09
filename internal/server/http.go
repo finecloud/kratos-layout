@@ -1,12 +1,10 @@
 package server
 
 import (
-	v1 "github.com/LikeRainDay/kratos-layout/api/helloworld/v1"
-	"github.com/LikeRainDay/kratos-layout/internal/conf"
-	"github.com/LikeRainDay/kratos-layout/internal/data"
-	"github.com/LikeRainDay/kratos-layout/internal/service"
-	"github.com/LikeRainDay/kratos-layout/pkg/casdoor_auth"
-	"github.com/LikeRainDay/kratos-layout/pkg/log_id"
+	"github.com/finecloud/kratos-layout/internal/conf"
+	"github.com/finecloud/kratos-layout/internal/data"
+	"github.com/finecloud/kratos-layout/pkg/casdoor_auth"
+	"github.com/finecloud/kratos-layout/pkg/log_id"
 	prom "github.com/go-kratos/kratos/contrib/metrics/prometheus/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/logging"
@@ -20,7 +18,7 @@ import (
 )
 
 // NewHTTPServer new HTTP server.
-func NewHTTPServer(c *conf.Server, auth *conf.Data, logger log.Logger, greeter *service.GreeterService) *http.Server {
+func NewHTTPServer(c *conf.Server, auth *conf.Data, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			validate.Validator(),
@@ -49,7 +47,6 @@ func NewHTTPServer(c *conf.Server, auth *conf.Data, logger log.Logger, greeter *
 	openAPIhandler := openapiv2.NewHandler()
 	srv.HandlePrefix("/q/", openAPIhandler)
 	srv.Handle("/metrics", promhttp.Handler())
-	v1.RegisterGreeterHTTPServer(srv, greeter)
 
 	return srv
 }

@@ -8,7 +8,7 @@
       <env name="service.name" value="test" />
     </envs>
     <kind value="DIRECTORY" />
-    <package value="github.com/LikeRainDay/kratos-layout/cmd/server" />
+    <package value="github.com/finecloud/kratos-layout/cmd/server" />
     <directory value="$PROJECT_DIR$/cmd/server" />
     <filePath value="$PROJECT_DIR$/cmd/server/main.go" />
     <method v="2" />

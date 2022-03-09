@@ -1,12 +1,10 @@
 package server
 
 import (
-	v1 "github.com/LikeRainDay/kratos-layout/api/helloworld/v1"
-	"github.com/LikeRainDay/kratos-layout/internal/conf"
-	"github.com/LikeRainDay/kratos-layout/internal/data"
-	"github.com/LikeRainDay/kratos-layout/internal/service"
-	"github.com/LikeRainDay/kratos-layout/pkg/casdoor_auth"
-	"github.com/LikeRainDay/kratos-layout/pkg/log_id"
+	"github.com/finecloud/kratos-layout/internal/conf"
+	"github.com/finecloud/kratos-layout/internal/data"
+	"github.com/finecloud/kratos-layout/pkg/casdoor_auth"
+	"github.com/finecloud/kratos-layout/pkg/log_id"
 	prom "github.com/go-kratos/kratos/contrib/metrics/prometheus/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/logging"
@@ -17,7 +15,7 @@ import (
 )
 
 // NewGRPCServer new a gRPC server.
-func NewGRPCServer(c *conf.Server, logger log.Logger, greeter *service.GreeterService) *grpc.Server {
+func NewGRPCServer(c *conf.Server, logger log.Logger) *grpc.Server {
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			validate.Validator(),
@@ -41,6 +39,5 @@ func NewGRPCServer(c *conf.Server, logger log.Logger, greeter *service.GreeterSe
 		opts = append(opts, grpc.Timeout(c.Grpc.Timeout.AsDuration()))
 	}
 	srv := grpc.NewServer(opts...)
-	v1.RegisterGreeterServer(srv, greeter)
 	return srv
 }

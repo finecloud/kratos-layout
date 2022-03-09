@@ -1,9 +1,9 @@
 package server
 
 import (
-	"github.com/LikeRainDay/kratos-layout/internal/conf"
 	"github.com/alibaba/sentinel-golang/ext/datasource"
 	"github.com/alibaba/sentinel-golang/pkg/datasource/nacos"
+	"github.com/finecloud/kratos-layout/internal/conf"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/nacos-group/nacos-sdk-go/clients"
 	"github.com/nacos-group/nacos-sdk-go/common/constant"

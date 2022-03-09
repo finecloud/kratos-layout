@@ -5,11 +5,11 @@
 package main
 
 import (
-	"github.com/LikeRainDay/kratos-layout/internal/biz"
-	"github.com/LikeRainDay/kratos-layout/internal/conf"
-	"github.com/LikeRainDay/kratos-layout/internal/data"
-	"github.com/LikeRainDay/kratos-layout/internal/server"
-	"github.com/LikeRainDay/kratos-layout/internal/service"
+	"github.com/finecloud/kratos-layout/internal/biz"
+	"github.com/finecloud/kratos-layout/internal/conf"
+	"github.com/finecloud/kratos-layout/internal/data"
+	"github.com/finecloud/kratos-layout/internal/server"
+	"github.com/finecloud/kratos-layout/internal/service"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"

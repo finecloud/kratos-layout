@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/LikeRainDay/kratos-layout/internal/conf"
-	"github.com/LikeRainDay/kratos-layout/pkg/casdoor_auth"
-	"github.com/LikeRainDay/kratos-layout/pkg/color"
+	"github.com/finecloud/kratos-layout/internal/conf"
+	"github.com/finecloud/kratos-layout/pkg/casdoor_auth"
+	"github.com/finecloud/kratos-layout/pkg/color"
 	"github.com/go-kratos/kratos/v2/middleware/tracing"
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/http"
