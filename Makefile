@@ -3,6 +3,13 @@ VERSION=$(shell git describe --tags --always)
 INTERNAL_PROTO_FILES=$(shell find internal -name *.proto)
 API_PROTO_FILES=$(shell find api -name *.proto)
 MICRO_MOD=$(shell cat go.mod|sed -n '1p'|awk '{print $$2}')
+GO_OPTS=$(shell echo $(API_PROTO_FILES) | awk '{for(i=1;i<=NF;i++){print "--go_opt=M"$$i"=$(MICRO_MOD)/"$$i}}' \
+						| awk -F/ 'OFS="/"{$$NF="";print}'	\
+						| sed 's/.$$//g')
+
+GO_INTERNAL_API_OPTS=$(shell echo $(INTERNAL_PROTO_FILES) | awk '{for(i=1;i<=NF;i++){print "--go_opt=M"$$i"=$(MICRO_MOD)/"$$i}}' \
+						| awk -F/ 'OFS="/"{$$NF="";print}'	\
+						| sed 's/.$$//g')
 
 .PHONY: init
 # init env
@@ -12,9 +19,10 @@ init:
 	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
+	go get -u github.com/google/wire/cmd/wire
+	go get github.com/swaggo/swag/cmd/swag@v1.7.8
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 	go mod download
-	go get github.com/google/wire/cmd/wire@v0.5.0
-	go install github.com/google/wire/cmd/wire
 
 .PHONY: errors
 # generate errors code
@@ -30,6 +38,7 @@ errors:
 config:
 	protoc --proto_path=. \
 	       --proto_path=./third_party \
+	       $(GO_INTERNAL_API_OPTS)	\
  	       --go_out=paths=source_relative:. \
 	       $(INTERNAL_PROTO_FILES)
 
@@ -38,6 +47,7 @@ config:
 api:
 	protoc --proto_path=. \
 		   --proto_path=./third_party \
+		   $(GO_OPTS)		\
  	       --go_out=paths=source_relative:. \
  	       --go-http_out=paths=source_relative:. \
  	       --go-grpc_out=paths=source_relative:. \
@@ -64,6 +74,17 @@ run:
 generate:
 	go generate ./...
 
+.PHONY: swagger
+# 编译生成swagger.json文件
+swagger:
+	protoc --proto_path=. \
+		   --proto_path=./third_party \
+		   --openapiv2_out . \
+		   --openapiv2_opt logtostderr=true \
+           --openapiv2_opt json_names_for_fields=false \
+           --openapiv2_opt enums_as_ints=true	\
+           $(API_PROTO_FILES)
+
 .PHONY: all
 # generate all
 all:
@@ -72,6 +93,8 @@ all:
 	make config;
 	make generate;
 	make api;
+	make swagger;
+	go mod tidy;
 
 # show help
 help:
