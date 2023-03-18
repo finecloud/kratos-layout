@@ -96,6 +96,10 @@ all:
 	make swagger;
 	go mod tidy;
 
+.PHONY: service
+service:
+	kratos proto server api/$(model)/$(name).proto -t internal/service
+
 # show help
 help:
 	@echo ''
