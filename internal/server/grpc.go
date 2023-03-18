@@ -1,10 +1,10 @@
 package server
 
 import (
-	"github.com/finecloud/kratos-layout/internal/conf"
-	"github.com/finecloud/kratos-layout/internal/data"
-	"github.com/finecloud/kratos-layout/pkg/casdoor_auth"
-	"github.com/finecloud/kratos-layout/pkg/log_id"
+	"github.com/author_name/project_name/internal/conf"
+	"github.com/author_name/project_name/internal/data"
+	"github.com/author_name/project_name/pkg/casdoor_auth"
+	"github.com/author_name/project_name/pkg/log_id"
 	prom "github.com/go-kratos/kratos/contrib/metrics/prometheus/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/logging"

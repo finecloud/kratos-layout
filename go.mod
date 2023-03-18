@@ -1,4 +1,4 @@
-module github.com/finecloud/kratos-layout
+module github.com/author_name/project_name
 
 go 1.16
 

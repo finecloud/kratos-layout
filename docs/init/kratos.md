@@ -11,7 +11,7 @@ go get -u github.com/go-kratos/kratos/cmd/kratos/v2@latest
 
 ```
 # Create a template project
-kratos new -r https://github.com/finecloud/kratos-layout.git github.com/finecloud/server 
+kratos new -r https://github.com/author_name/project_name.git github.com/finecloud/server 
 
 cd server
 # Add a proto template

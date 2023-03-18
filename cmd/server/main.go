@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/finecloud/kratos-layout/internal/conf"
-	"github.com/finecloud/kratos-layout/pkg/casdoor_auth"
-	"github.com/finecloud/kratos-layout/pkg/color"
+	"github.com/author_name/project_name/internal/conf"
+	"github.com/author_name/project_name/pkg/casdoor_auth"
+	"github.com/author_name/project_name/pkg/color"
 	"github.com/go-kratos/kratos/v2/middleware/tracing"
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/http"
