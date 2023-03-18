@@ -16,6 +16,9 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
 
+      - run: chomd +x .github/rename_project.sh
+        shell: bash
+
       - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}' | tr '-' '_' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
         shell: bash
 
