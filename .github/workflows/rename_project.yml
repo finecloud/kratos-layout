@@ -1,4 +1,4 @@
-ame: Rename the project from template
+name: Rename the project from template
 
 on: [push]
 
