@@ -1,5 +1,5 @@
 service:
-  name: kratos-layout
+  name: project_name
   version: 1.0.0
 
 data:

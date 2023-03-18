@@ -38,8 +38,6 @@ const _UI = `
 
 service : %s
 version : %s
-石墨文档: https://shimo.im/space/47kgJQmYZVCBe1qV
-doc links : https://github.com/Enrich-one-s-family/docs
 `
 
 func init() {

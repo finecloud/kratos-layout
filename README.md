@@ -1,4 +1,4 @@
-# Kratos Project Template
+# project_name
 
 - [环境配置](docs/init/env_config.md)
 - [Kratos](docs/init/kratos.md)

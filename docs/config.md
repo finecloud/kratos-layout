@@ -4,7 +4,7 @@
 
 ```yaml
 service:
-  name: kratos-layout
+  name: project_name
   version: 1.0.0
   grpc:
     addr: 0.0.0.0:9000
